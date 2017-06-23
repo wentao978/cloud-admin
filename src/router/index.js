@@ -2,12 +2,18 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // const Info = r => require.ensure([], () => r(require('@components/info')), 'info')
+// const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
+// const Foo = resolve => require(['./Foo.vue'], resolve)
 
 /* layout */
-import Layout from '../views/layout/Layout';
+// import Layout from '../views/layout/Layout';
+const Layout = r => require.ensure([], () => r(require('../views/layout/Layout')), 'Layout')
+// const Layout = resolve => require(['../views/layout/Layout'], resolve)
 
 /* login */
-import Login from '../views/login/';
+// import Login from '../views/login/';
+const Login = r => require.ensure([], () => r(require('../views/login/')), 'Login')
+// const Login = resolve => require(['../views/login/'], resolve)
 // const authRedirect = () => import('../views/login/authredirect');
 // const sendPWD = () => import('../views/login/sendpwd');
 // const reset = () => import('../views/login/reset');
@@ -15,6 +21,7 @@ import Login from '../views/login/';
 /* dashboard */
 // const dashboard = () => import('../views/dashboard/index');
 const dashboard = r => require.ensure([], () => r(require('../views/dashboard/index')), 'dashboard')
+// const dashboard = resolve => require(['../views/dashboard/index'], resolve)
 
 /* Introduction */
 // const Introduction = () => import('../views/introduction/index');
@@ -38,12 +45,15 @@ const dashboard = r => require.ensure([], () => r(require('../views/dashboard/in
 // const KeyboardChart = () => import('../views/charts/keyboard');
 // const KeyboardChart2 = () => import('../views/charts/keyboard2');
 // const LineMarker = () => import('../views/charts/line');
-//const MixChart = () => import('../views/charts/mixchart');
+// const MixChart = () => import('../views/charts/mixchart');
 const MixChart = r => require.ensure([], () => r(require('../views/charts/mixchart')), 'MixChart')
+// const MixChart = resolve => require(['../views/charts/mixchart'], resolve)
 
 /* error page */
-//const Err404 = () => import('../views/error/404');
+// const Err404 = () => import('../views/error/404');
 const Err404 = r => require.ensure([], () => r(require('../views/error/404')), 'Err404')
+// const Err404 = resolve => require(['../views/error/404'], resolve)
+
 // const Err401 = () => import('../views/error/401');
 
 /* error log */
@@ -58,17 +68,23 @@ const Err404 = r => require.ensure([], () => r(require('../views/error/404')), '
 /* example*/
 // const TableLayout = () => import('../views/example/table/index');
 const TableLayout = r => require.ensure([], () => r(require('../views/example/table/index')), 'TableLayout')
+// const TableLayout = resolve => require(['../views/example/table/index'], resolve)
 
 // const DynamicTable = () => import('../views/example/table/dynamictable');
-// const Table = () => import('../views/example/table/table');
+ // const Table = () => import('../views/example/table/table');
 const Table = r => require.ensure([], () => r(require('../views/example/table/table')), 'Table')
+// const Table = resolve => require(['../views/example/table/table'], resolve)
+
 // const DragTable = () => import('../views/example/table/dragTable');
 // const InlineEditTable = () => import('../views/example/table/inlineEditTable');
 // const Form1 = () => import('../views/example/form1');
 const Form1 = r => require.ensure([], () => r(require('../views/example/form1')), 'Form1')
+// const Form1 = resolve => require(['../views/example/form1'], resolve)
+
 /* permission */
 // const Permission = () => import('../views/permission/index');
 const Permission = r => require.ensure([], () => r(require('../views/permission/index')), 'Permission')
+// const Permission = resolve => require(['../views/permission/index'], resolve)
 
 Vue.use(Router);
 
@@ -108,6 +124,7 @@ export const constantRouterMap = [
 export default new Router({
   mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
+  base: '/cloud-admin/',
   routes: constantRouterMap
 });
 
