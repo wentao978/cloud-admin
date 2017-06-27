@@ -4,7 +4,7 @@
             <!-- <PanThumb style="float: left" :image="avatar"> 你的权限:
                 <span class="pan-info-roles" v-for="item in roles">{{item}}</span>
             </PanThumb> -->
-            <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" class="github-corner" aria-label="View source on Github">
+            <a href="https://github.com/wentao978/cloud-admin" target="_blank" class="github-corner" aria-label="View source on Github">
                 <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#4AB7BD; color:#fff; position: absolute; top: 50px; border: 0; right: 0;"
                 aria-hidden="true">
                 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -17,17 +17,17 @@
                 <span class="display_name">{{name}}</span>
                 <div class="info-wrapper">
                     <div class="info-item" :to="'/article/wscnlist?uid='+uid">
-                         <countTo class="info-item-num" :startVal='0' :endVal='statisticsData.article_count' :duration='3400'></countTo>
+                         <!--<countTo class="info-item-num" :startVal='0' :endVal='statisticsData.article_count' :duration='3400'></countTo>-->
                         <span class="info-item-text">文章</span>
                         <wscn-icon-svg icon-class="a" class="dashboard-editor-icon"/>
                     </div>
                     <div class="info-item" style="cursor: auto">
-                        <countTo class="info-item-num"  :startVal='0' :endVal='statisticsData.pageviews_count' :duration='3600'></countTo>
+                        <!--<countTo class="info-item-num"  :startVal='0' :endVal='statisticsData.pageviews_count' :duration='3600'></countTo>-->
                         <span class="info-item-text">浏览量</span>
                         <wscn-icon-svg icon-class="b" class="dashboard-editor-icon"/>
                     </div>
                     <div class="info-item" :to="'/comment/commentslist?res_author_id='+uid">
-                         <countTo class="info-item-num" ref='countTo3' :startVal='0' :endVal='statisticsData.comment_count' :duration='3800'></countTo>
+                         <!--<countTo class="info-item-num" ref='countTo3' :startVal='0' :endVal='statisticsData.comment_count' :duration='3800'></countTo>-->
                         <span class="info-item-text">评论</span>
                         <wscn-icon-svg icon-class="c" class="dashboard-editor-icon"/>
                     </div>
@@ -35,20 +35,20 @@
             </div>
         </div>
 
-        <div class="btn-group">
+        <!-- <div class="btn-group">
             <router-link class="pan-btn blue-btn" to="/components/index">组件</router-link>
             <router-link class="pan-btn light-blue-btn" to="/charts/index">图表</router-link>
             <router-link class="pan-btn red-btn" to="/errorpage/404">错误页面</router-link>
             <router-link class="pan-btn pink-btn" to="/excel/download">导出excel</router-link>
             <router-link class="pan-btn green-btn" to="/example/table">table</router-link>
             <router-link class="pan-btn tiffany-btn" to="/example/form1">form</router-link>
-        </div>
+        </div> -->
 
         <div class="clearfix main-dashboard-container">
             <div class="chart-container">
-                <MonthKpi style="border-bottom: 1px solid #DEE1E2;"
+                <!-- <MonthKpi style="border-bottom: 1px solid #DEE1E2;"
                           :articlesComplete='statisticsData.month_article_count'></MonthKpi>
-                <ArticlesChart :listData='statisticsData.week_article'></ArticlesChart>
+                <ArticlesChart :listData='statisticsData.week_article'></ArticlesChart> -->
             </div>
             <div class="recent-articles-container">
                 <div class="recent-articles-title">最近撸了</div>
@@ -74,13 +74,12 @@
 <script>
     import { mapGetters } from 'vuex';
     // import PanThumb from 'components/PanThumb';
-    import MonthKpi from './monthKpi';
-    import ArticlesChart from './articlesChart';
+    // import MonthKpi from './monthKpi';
+    // import ArticlesChart from './articlesChart';
     import { getList } from 'api/article';
-    import countTo from 'vue-count-to';
+    //import countTo from 'vue-count-to';
     export default {
       name: 'dashboard-editor',
-      components: { MonthKpi, ArticlesChart, countTo },
       data() {
         return {
           chart: null,

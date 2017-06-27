@@ -4,7 +4,7 @@
             <!-- <PanThumb style="float: left" :image="avatar"> 你的权限:
                 <span class="pan-info-roles" v-for="item in roles">{{item}}</span>
             </PanThumb> -->
-            <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" class="github-corner" aria-label="View source on Github">
+            <a href="https://github.com/wentao978/cloud-admin" target="_blank" class="github-corner" aria-label="View source on Github">
                 <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#4AB7BD; color:#fff; position: absolute; top: 50px; border: 0; right: 0;"
                 aria-hidden="true">
                 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -19,20 +19,17 @@
             </div>
         </div>
         <div>
-            <img class='emptyGif' :src="emptyGif" >
         </div>
     </div>
 </template>
 
 <script>
     import { mapGetters } from 'vuex';
-    // import PanThumb from 'components/PanThumb';
     export default {
       name: 'dashboard-default',
       components: {  },
       data() {
         return {
-          emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'
         }
       },
       computed: {
@@ -49,11 +46,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-    .emptyGif {
-       display: block;
-       width: 45%;
-       margin: 0 auto;
-    }
+
     .dashboard-editor-container {
         background-color: #e3e3e3;
         min-height: 100vh;

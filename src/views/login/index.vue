@@ -1,5 +1,6 @@
 <template>
     <div class="login-container">
+        <canvas id="root" width="1000" height="500"></canvas>
         <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left"
                  label-width="0px"
                  class="card-box login-form">
@@ -28,6 +29,7 @@
 <script>
     import { mapGetters } from 'vuex';
     import { isWscnEmail } from 'utils/validate';
+    import CanvasAnimate from 'utils/CanvasAnimate'
     // import { getQueryObject } from 'utils';
     // import socialSign from './socialsignin';
 
@@ -82,10 +84,10 @@
                 this.loading = false;
                 this.$router.push({ path: '/' });
                 // this.showDialog = true;
-              }).catch(err => {
+              }).catch(() => {
                 //    debugger;
                    this.$message({
-                      message: `用户名非法${err}`,
+                      message: '请输入正确的用户名',
                       type: 'error'
                     });
 
@@ -119,6 +121,13 @@
       created() {
         // window.addEventListener('hashchange', this.afterQRScan);
       },
+      mounted(){
+          let root = document.querySelector("#root")
+          root.width= document.body.clientWidth;
+          root.height = document.body.clientHeight;
+            let a = new CanvasAnimate(root,{length:50,clicked:true,moveon:true})
+            a.Run()
+      },
       destroyed() {
         // window.removeEventListener('hashchange', this.afterQRScan);
       }
@@ -127,6 +136,11 @@
 
 <style rel="stylesheet/scss" lang="scss">
     @import "src/styles/mixin.scss";
+    #root{
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
     .tips{
       font-size: 14px;
       color: #fff;
@@ -135,7 +149,7 @@
     .login-container {
         @include relative;
         height: 100vh;
-        background-color: #2d3a4b;
+        background-color: #f7fafc;
 
         input:-webkit-autofill {
             -webkit-box-shadow: 0 0 0px 1000px #293444 inset !important;
@@ -173,9 +187,15 @@
             position: absolute;
             left: 0;
             right: 0;
+            bottom: 0;
+            top: 0;
+            z-index: 5;
+            border-radius: 10px;
             width: 400px;
+            height: 400px;
             padding: 35px 35px 15px 35px;
-            margin: 120px auto;
+            margin: auto;
+            background-color: rgba(45,58,75,0.8);
         }
 
         .el-form-item {

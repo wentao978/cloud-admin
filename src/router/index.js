@@ -83,7 +83,7 @@ const Form1 = r => require.ensure([], () => r(require('../views/example/form1'))
 
 /* permission */
 // const Permission = () => import('../views/permission/index');
-const Permission = r => require.ensure([], () => r(require('../views/permission/index')), 'Permission')
+// const Permission = r => require.ensure([], () => r(require('../views/permission/index')), 'Permission')
 // const Permission = resolve => require(['../views/permission/index'], resolve)
 
 Vue.use(Router);
@@ -129,16 +129,16 @@ export default new Router({
 });
 
 export const asyncRouterMap = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/index',
-    name: '权限测试',
-    icon: 'quanxian',
-    meta: { role: ['admin'] },
-    noDropdown: true,
-    children: [{ path: 'index', component: Permission, name: '权限测试页', meta: { role: ['admin'] } }]
-  },
+  // {
+  //   path: '/permission',
+  //   component: Layout,
+  //   redirect: '/permission/index',
+  //   name: '权限测试',
+  //   icon: 'quanxian',
+  //   meta: { role: ['admin'] },
+  //   noDropdown: true,
+  //   children: [{ path: 'index', component: Permission, name: '权限测试页', meta: { role: ['admin'] } }]
+  // },
   // {
   //   path: '/components',
   //   component: Layout,
@@ -231,7 +231,7 @@ export const asyncRouterMap = [
     name: '综合form',
     icon: 'theme',
     noDropdown: true,
-    children: [{ path: 'index', component: Form1, name: '表单form' }]
+    children: [{ path: 'index', component: Form1, name: '表单form', meta: { role: ['admin'] } }]
   },
   { path: '*', redirect: '/404', hidden: true }
 ];

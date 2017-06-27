@@ -5,16 +5,16 @@ const userMap = {
     role: ['admin'],
     token: 'admin',
     introduction: '我是超级管理员',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: '超级管理员小潘',
+    avatar: 'http://q3.qlogo.cn/g?b=qq&k=OUyBPXfzMcJo3Ud6Mb6gRQ&s=140&t=1483322487',
+    name: '超级管理员',
     uid: '001'
   },
   editor: {
     role: ['editor'],
     token: 'editor',
     introduction: '我是编辑',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: '普通编辑小张',
+    avatar: 'http://q3.qlogo.cn/g?b=qq&k=OUyBPXfzMcJo3Ud6Mb6gRQ&s=140&t=1483322487',
+    name: '普通编辑',
     uid: '002'
 
   },
@@ -22,8 +22,8 @@ const userMap = {
     role: ['develop'],
     token: 'develop',
     introduction: '我是开发',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: '工程师小王',
+    avatar: 'http://q3.qlogo.cn/g?b=qq&k=OUyBPXfzMcJo3Ud6Mb6gRQ&s=140&t=1483322487',
+    name: '工程师',
     uid: '003'
   }
 }

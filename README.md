@@ -1,23 +1,21 @@
-## ¿ª·¢
+## å¼€å‘
 ```bash
-    # ¿ËÂ¡ÏîÄ¿
+    # å…‹éš†é¡¹ç›®
     git clone https://github.com/wentao978/cloud-admin.git
 
-    # °²×°ÒÀÀµ
+    # å®‰è£…ä¾èµ–
     npm install
- ? ?//or # ½¨Òé²»ÒªÓÃcnpm ?°²×°ÓĞ¸÷ÖÖ¹îÒìµÄbug ¿ÉÒÔÍ¨¹ıÈçÏÂ²Ù×÷½â¾önpmËÙ¶ÈÂıµÄÎÊÌâ
+    å¯ä»¥é€šè¿‡å¦‚ä¸‹æ“ä½œè§£å†³npmé€Ÿåº¦æ…¢çš„é—®é¢˜
     npm install --registry=https://registry.npm.taobao.org
 
-    # ±¾µØ¿ª·¢ ¿ªÆô·şÎñ
+    # æœ¬åœ°å¼€å‘ å¼€å¯æœåŠ¡
     npm run dev
 ```
-ä¯ÀÀÆ÷·ÃÎÊ http://localhost:9527
+æµè§ˆå™¨è®¿é—® http://localhost:8000
 
-## ·¢²¼
+## å‘å¸ƒ
 ```bash
-    # ·¢²¼²âÊÔ»·¾³ ´øwebpack ananalyzer
-    npm run build:sit-preview
 
-    # ¹¹½¨Éú³É»·¾³
-    npm run build:prod
+    # æ„å»ºç”Ÿæˆç¯å¢ƒ
+    npm run build
 ```
