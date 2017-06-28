@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-        <canvas id="root" width="1000" height="500"></canvas>
+        <canvas id="root" width="100%" height="100%"></canvas>
         <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left"
                  label-width="0px"
                  class="card-box login-form">
@@ -148,9 +148,13 @@
     }
     .login-container {
         @include relative;
-        height: 100vh;
         background-color: #f7fafc;
-
+        @media (max-width:400px) {
+            & {
+                display: flex;
+                flex: 1;
+            }
+        }
         input:-webkit-autofill {
             -webkit-box-shadow: 0 0 0px 1000px #293444 inset !important;
             -webkit-text-fill-color: #fff !important;
@@ -196,6 +200,12 @@
             padding: 35px 35px 15px 35px;
             margin: auto;
             background-color: rgba(45,58,75,0.8);
+            @media (max-width:400px) {
+                & {
+                    padding: 10px;
+                    width: calc(100% - 20px);
+                }
+            }
         }
 
         .el-form-item {

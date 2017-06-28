@@ -27,6 +27,8 @@
 
     <el-table  :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
 
+        <el-table-column type="selection" width="55">
+       </el-table-column>
       <el-table-column align="center" label="序号" width="65">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
@@ -41,7 +43,7 @@
 
       <el-table-column min-width="300px" label="标题">
         <template scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
+          <span class="link-type">{{scope.row.title}}</span>
           <el-tag>{{scope.row.type | typeFilter}}</el-tag>
         </template>
       </el-table-column>
@@ -79,12 +81,8 @@
 
       <el-table-column  align="center" label="操作" width="150">
         <template scope="scope">
-          <el-button v-if="scope.row.status!='published'" size="small" type="success" @click="handleModifyStatus(scope.row,'published')">发布
-          </el-button>
-          <el-button v-if="scope.row.status!='draft'" size="small" @click="handleModifyStatus(scope.row,'draft')">草稿
-          </el-button>
-          <el-button v-if="scope.row.status!='deleted'" size="small" type="danger" @click="handleModifyStatus(scope.row,'deleted')">删除
-            </el-button>
+          <el-button size="small" type="primary" @click="handleUpdate(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除 </el-button>
         </template>
       </el-table-column>
 
@@ -96,7 +94,7 @@
       </el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="lock" :lock-scroll="lock">
       <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
         <el-form-item label="类型">
           <el-select class="filter-item" v-model="temp.type" placeholder="请选择">
@@ -131,7 +129,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
         <el-button v-else type="primary" @click="update">确 定</el-button>
       </div>
@@ -174,6 +172,7 @@
           list: null,
           total: null,
           listLoading: true,
+          lock:false,
           listQuery: {
             page: 1,
             limit: 20,
@@ -270,14 +269,26 @@
           this.dialogFormVisible = true;
         },
         handleDelete(row) {
-          this.$notify({
-            title: '成功',
-            message: '删除成功',
-            type: 'success',
-            duration: 2000
-          });
-          const index = this.list.indexOf(row);
-          this.list.splice(index, 1);
+            this.$confirm('此操作将删除该条记录, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning',
+              lockScroll: false
+            }).then(() => {
+                this.$notify({
+                  title: '成功',
+                  message: '删除成功',
+                  type: 'success',
+                  duration: 2000
+                });
+                const index = this.list.indexOf(row);
+                this.list.splice(index, 1);
+            }).catch(() => {
+            //   this.$message({
+            //     type: 'info',
+            //     message: '已取消删除'
+            //   });
+            });
         },
         create() {
           this.temp.id = parseInt(Math.random() * 100) + 1024;

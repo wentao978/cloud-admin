@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 import { param2Obj } from 'utils';
 
 const NameList = [];
-const count = 100;
+const count = 1000;
 
 for (let i = 0; i < count; i++) {
   NameList.push(Mock.mock({

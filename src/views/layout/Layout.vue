@@ -85,12 +85,12 @@
             padding-top: 60px;
         }
     }
-    @media screen and (max-width: 768px){
-        .sidebar-wrapper {
-            transform: translate3d(-180px,0,0);
-        }
-        .app-wrapper .main-container{
-            margin-left: 0px;
-        }
-    }
+    // @media screen and (max-width: 768px){
+    //     .sidebar-wrapper {
+    //         transform: translate3d(-180px,0,0);
+    //     }
+    //     .app-wrapper .main-container{
+    //         margin-left: 0px;
+    //     }
+    // }
 </style>

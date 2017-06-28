@@ -81,3 +81,22 @@
     }
   }
 }
+
+// style for mobile
+@media (max-width:768px) {
+}
+
+@media (max-width:640px) {
+    .el-pagination{
+        white-space: normal;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .sidebar-wrapper {
+        transform: translate3d(-180px,0,0);
+    }
+    .app-wrapper .main-container{
+        margin-left: 0px !important;
+    }
+}
