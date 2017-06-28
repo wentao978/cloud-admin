@@ -1,9 +1,9 @@
 <template>
     <el-menu class="navbar" mode="horizontal">
-        <Hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></Hamburger>
+        <!-- <Hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></Hamburger> -->
         <levelbar></levelbar>
         <!-- <ErrLog v-if="log.length>0" class="errLog-container" :logsList="log"></ErrLog> -->
-        <el-dropdown class="avatar-container" trigger="click">
+        <!-- <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
                 <img class="user-avatar" :src="avatar">
                 <i class="el-icon-caret-bottom"/>
@@ -11,21 +11,21 @@
             <el-dropdown-menu class="user-dropdown" slot="dropdown">
                 <el-dropdown-item><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
             </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
     </el-menu>
 </template>
 
 <script>
     import { mapGetters } from 'vuex';
     import Levelbar from './Levelbar';
-    import Hamburger from 'components/Hamburger';
+    // import Hamburger from 'components/Hamburger';
     // import ErrLog from 'components/ErrLog';
     // import errLogStore from 'store/errLog';
 
     export default {
       components: {
         Levelbar,
-        Hamburger,
+        // Hamburger,
         // ErrLog
       },
       data() {
@@ -67,28 +67,6 @@
             display: inline-block;
             position: absolute;
             right: 150px;
-        }
-        .avatar-container {
-            height: 50px;
-            display: inline-block;
-            position: absolute;
-            right: 35px;
-            .avatar-wrapper {
-                cursor: pointer;
-                margin-top:5px;
-                position: relative;
-                .user-avatar {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 10px;
-                }
-                .el-icon-caret-bottom {
-                    position: absolute;
-                    right: -20px;
-                    top: 25px;
-                    font-size: 12px;
-                }
-            }
         }
     }
 </style>
