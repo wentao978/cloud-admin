@@ -29,7 +29,7 @@
 
         <el-table-column type="selection" width="55">
        </el-table-column>
-      <el-table-column align="center" label="序号" width="65">
+      <el-table-column align="center" label="序号" width="165px">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>

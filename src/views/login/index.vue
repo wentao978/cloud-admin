@@ -29,7 +29,8 @@
 <script>
     import { mapGetters } from 'vuex';
     import { isWscnEmail } from 'utils/validate';
-    import CanvasAnimate from 'utils/CanvasAnimate'
+    import CanvasAnimate from 'utils/CanvasAnimate';
+    import CookieUtil from 'utils/cookieUtil'
     // import { getQueryObject } from 'utils';
     // import socialSign from './socialsignin';
 
@@ -79,10 +80,21 @@
             if (valid) {
               this.loading = true;
 
-              this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
+              this.$store.dispatch('LoginByEmail', this.loginForm).then(response => {
+                //   console.log(CookieUtil);
                 //    debugger;
-                this.loading = false;
-                this.$router.push({ path: '/' });
+                   if(response.data.error){
+                       this.loading = false;
+                       CookieUtil.delCookie('Admin-Token');
+                       this.$message({
+                          message: response.data.msg,
+                          type: 'error'
+                        });
+                   }else{
+                       this.loading = false;
+                       this.$router.push({ path: '/' });
+                   }
+
                 // this.showDialog = true;
               }).catch(() => {
                 //    debugger;

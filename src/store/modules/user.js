@@ -1,5 +1,5 @@
 import { loginByEmail, logout, getInfo } from 'api/login';
-import Cookies from 'js-cookie';
+import CookieUtil from 'utils/cookieUtil'
 
 const user = {
   state: {
@@ -9,7 +9,7 @@ const user = {
     code: '',
     uid: undefined,
     auth_type: '',
-    token: Cookies.get('Admin-Token'),
+    token: CookieUtil.getCookie('Admin-Token'),
     name: '',
     avatar: '',
     introduction: '',
@@ -67,11 +67,12 @@ const user = {
       const email = userInfo.email.trim();
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
+            // debugger;
           const data = response.data;
-          Cookies.set('Admin-Token', response.data.token);
+          CookieUtil.setCookie('Admin-Token', response.data.token);
           commit('SET_TOKEN', data.token);
           commit('SET_EMAIL', email);
-          resolve();
+          resolve(response);
         }).catch(error => {
           reject(error);
         });
@@ -117,7 +118,7 @@ const user = {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '');
           commit('SET_ROLES', []);
-          Cookies.remove('Admin-Token');
+          CookieUtil.delCookie('Admin-Token');
           resolve();
         }).catch(error => {
           reject(error);
@@ -129,7 +130,7 @@ const user = {
     FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '');
-        Cookies.remove('Admin-Token');
+        CookieUtil.delCookie('Admin-Token');
         resolve();
       });
     },
@@ -139,7 +140,7 @@ const user = {
       return new Promise(resolve => {
         commit('SET_ROLES', [role]);
         commit('SET_TOKEN', role);
-        Cookies.set('Admin-Token', role);
+        CookieUtil.setCookie('Admin-Token', role);
         resolve();
       })
     }

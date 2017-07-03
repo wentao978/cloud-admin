@@ -187,7 +187,7 @@
         }
       },
       created() {
-        this.fetchData();
+        // this.fetchData();
       },
       methods: {
         fetchData() {

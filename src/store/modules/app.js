@@ -1,19 +1,19 @@
-import Cookies from 'js-cookie';
+import CookieUtil from 'utils/cookieUtil'
 
 const app = {
   state: {
     sidebar: {
-      opened: !+Cookies.get('sidebarStatus')
+      opened: !+CookieUtil.getCookie('sidebarStatus')
     },
     theme: 'default',
-    livenewsChannels: Cookies.get('livenewsChannels') || '[]'
+    livenewsChannels: CookieUtil.getCookie('livenewsChannels') || '[]'
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
       if (state.sidebar.opened) {
-        Cookies.set('sidebarStatus', 1);
+        CookieUtil.setCookie('sidebarStatus', 1);
       } else {
-        Cookies.set('sidebarStatus', 0);
+        CookieUtil.setCookie('sidebarStatus', 0);
       }
       state.sidebar.opened = !state.sidebar.opened;
     }

@@ -7,15 +7,15 @@ export function loginByEmail(email, password) {
   };
   return fetch({
     url: '/login/loginbyemail',
-    method: 'post',
-    data
+    method: 'get',
+    params: data
   });
 }
 
 export function logout() {
   return fetch({
     url: '/login/logout',
-    method: 'post'
+    method: 'get'
   });
 }
 
@@ -26,4 +26,3 @@ export function getInfo(token) {
     params: { token }
   });
 }
-
