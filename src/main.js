@@ -4,8 +4,9 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-default/index.css';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-default/index.css';
+import './components/element-ui'
 import 'assets/custom-theme/index.css'; // 换肤版本element-ui css https://github.com/PanJiaChen/custom-element-theme
 import NProgress from 'nprogress'; // Progress 进度条
 import 'nprogress/nprogress.css';// Progress 进度条 样式
@@ -24,9 +25,8 @@ import './mock/index.js';  // 该项目所有请求使用mockjs模拟
 // register globally
 //Vue.component('multiselect', Multiselect);
 // Vue.component('Sticky', Sticky);
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
 // Vue.use(vueWaves);
-
 // register global utility filters.
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])

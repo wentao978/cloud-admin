@@ -1,6 +1,6 @@
 <template>
     <div class="head">
-        <span class="jl-title fl">金立云管理平台</span>
+        <span class="jl-title fl">金立云控制台</span>
         <Hamburger class="hamburger-container fl" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></Hamburger>
         <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
