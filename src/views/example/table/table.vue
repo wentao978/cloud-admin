@@ -29,19 +29,19 @@
 
         <el-table-column type="selection" width="55">
        </el-table-column>
-      <el-table-column align="center" label="序号" width="165px">
+      <el-table-column align="center" label="序号" width="130px">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="时间">
+      <el-table-column width="150px" align="center" label="时间">
         <template scope="scope">
           <span>{{scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="300px" label="标题">
+      <el-table-column min-width="200px" label="标题">
         <template scope="scope">
           <span class="link-type">{{scope.row.title}}</span>
           <el-tag>{{scope.row.type | typeFilter}}</el-tag>

@@ -162,7 +162,7 @@
         }
         .info-container {
             position: relative;
-            margin-left: 190px;
+            // margin-left: 190px;
             height: 150px;
             line-height: 200px;
             .display_name {
