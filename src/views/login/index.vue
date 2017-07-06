@@ -1,27 +1,31 @@
 <template>
     <div class="login-container">
         <canvas id="root" width="100%" height="100%"></canvas>
+        <el-select style="width: 165px" class="language" v-model="lan" @change="changeLan" placeholder="切换语言">
+          <el-option :key="zh" label="中文(Chinese)" :value="zh"></el-option>
+          <el-option :key="en" label="英文(English)" :value="en"></el-option>
+        </el-select>
         <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left"
                  label-width="0px"
                  class="card-box login-form">
-            <h3 class="title">系统登录</h3>
+            <h3 class="title">{{ $t('login.systemLogin') }}</h3>
             <el-form-item prop="email">
                 <span class="svg-container"><wscn-icon-svg icon-class="jiedianyoujian"/></span>
                 <el-input name="email" type="text" v-model="loginForm.email" autoComplete="on"
-                          placeholder="邮箱"></el-input>
+                          :placeholder=" $t('login.email') "></el-input>
             </el-form-item>
             <el-form-item prop="password">
                 <span class="svg-container"><wscn-icon-svg icon-class="mima"/></span>
                 <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
-                          autoComplete="on" placeholder="密码"></el-input>
+                          autoComplete="on" :placeholder=" $t('login.password') "></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-                    登录
+                    {{ $t('login.login') }}
                 </el-button>
             </el-form-item>
-            <div class='tips'>admin账号为:admin@gionee.com 密码随便填</div>
-            <div class='tips'>editor账号:editor@gionee.com 密码随便填</div>
+            <div class='tips'>{{ $t('login.adminTips') }}</div>
+            <div class='tips'>{{ $t('login.editorTips') }}</div>
         </el-form>
     </div>
 </template>
@@ -33,26 +37,29 @@
     import CookieUtil from 'utils/cookieUtil'
     // import { getQueryObject } from 'utils';
     // import socialSign from './socialsignin';
-
     export default {
       components: {  },
       name: 'login',
       data() {
+          let _this = this;
         const validateEmail = (rule, value, callback) => {
           if (!isWscnEmail(value)) {
-            callback(new Error('请输入正确的合法邮箱'));
+            callback(new Error( _this.$t('login.correctEmail') ));
           } else {
             callback();
           }
         };
         const validatePass = (rule, value, callback) => {
           if (value.length < 6) {
-            callback(new Error('密码不能小于6位'));
+            callback(new Error( _this.$t('login.minPassword') ));
           } else {
             callback();
           }
         };
         return {
+            lan : window.localStorage.getItem('lan') || '',
+            zh : 'zh',
+            en: 'en',
           loginForm: {
             email: 'admin@gionee.com',
             password: ''
@@ -75,7 +82,26 @@
         ])
       },
       methods: {
+          changeLan() {
+            //   debugger;
+             if(this.lan === 'zh'){
+                  window.localStorage.setItem('lan','zh');
+             }
+             if(this.lan === 'en'){
+                  window.localStorage.setItem('lan','en');
+             }
+
+                this.$i18n.locale = window.localStorage.getItem('lan');
+                // if ( window.localStorage.getItem('lan') === 'zh') {
+                //     this.zh = '中文';
+                //     this.en = 'English';
+                // }else{
+                //     this.zh = 'Chinese';
+                //     this.en = 'English';
+                // }
+          },
         handleLogin() {
+            let _this = this;
           this.$refs.loginForm.validate(valid => {
             if (valid) {
               this.loading = true;
@@ -92,6 +118,7 @@
                         });
                    }else{
                        this.loading = false;
+                       location.reload();
                        this.$router.push({ path: '/' });
                    }
 
@@ -99,7 +126,7 @@
               }).catch(() => {
                 //    debugger;
                    this.$message({
-                      message: '请输入正确的用户名',
+                      message: _this.$t('login.correctUsername'),
                       type: 'error'
                     });
 
@@ -153,6 +180,24 @@
         left: 0;
         top: 0;
     }
+    .language{
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        padding: 0;
+        & .el-input__icon+.el-input__inner {
+            color: #000;
+            height: 36px;
+            line-height: 36px;
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #bfcbd9;
+        }
+        & .el-input__icon {
+            height: 36px;
+            margin-top: -5px;
+        }
+    }
     .tips{
       font-size: 14px;
       color: #fff;
@@ -192,6 +237,8 @@
 
         .title {
             font-size: 26px;
+            height: 36px;
+            line-height: 36px;
             font-weight: 400;
             color: #eeeeee;
             margin: 0px auto 40px auto;

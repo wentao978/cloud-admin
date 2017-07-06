@@ -16,6 +16,7 @@
       },
       created: function () {
         //   debugger;
+        // console.log(this.$store.getters.permission_routers);
       }
     }
 </script>

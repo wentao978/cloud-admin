@@ -1,6 +1,6 @@
 <template>
     <div class="head">
-        <span class="jl-title fl">金立云控制台</span>
+        <span class="jl-title fl">{{ $t('head.title') }}</span>
         <Hamburger class="hamburger-container fl" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></Hamburger>
         <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
@@ -8,7 +8,7 @@
                 <i class="el-icon-caret-bottom"/>
             </div>
             <el-dropdown-menu class="user-dropdown" slot="dropdown">
-                <el-dropdown-item><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+                <el-dropdown-item><span @click="logout" style="display:block;">{{$t('login.logout')}}</span></el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>

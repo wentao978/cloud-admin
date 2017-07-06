@@ -15,6 +15,7 @@ import 'styles/index.scss'; // 全局自定义的css样式
 import 'components/Icon-svg/index'; // 封装的svg组件
 import 'assets/iconfont/iconfont'; // iconfont 具体图标见https://github.com/PanJiaChen/vue-element-admin/wiki
 import * as filters from './filters'; // 全局vue filter
+import i18n from './i18n'
 //import Multiselect from 'vue-multiselect';// 使用的一个多选框组件，element-ui的select不能满足所有需求
 //import 'vue-multiselect/dist/vue-multiselect.min.css';// 多选框组件css
 // import Sticky from 'components/Sticky'; // 粘性header组件
@@ -118,6 +119,7 @@ router.afterEach(() => {
 // })(console.error);
 
 new Vue({
+  i18n,  
   router,
   store,
   render: h => h(App)
