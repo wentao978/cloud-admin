@@ -132,6 +132,9 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    beforeEnter: (to, from, next) => {
+        next();
+    },
     name: $t('route.home'), //首页
     hidden: true,
     children: [{ path: 'dashboard', component: dashboard }]

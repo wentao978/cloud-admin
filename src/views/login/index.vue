@@ -118,8 +118,9 @@
                         });
                    }else{
                        this.loading = false;
-                       location.reload();
                        this.$router.push({ path: '/' });
+                    //    window.location.reload();
+                    
                    }
 
                 // this.showDialog = true;

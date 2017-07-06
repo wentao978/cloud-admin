@@ -45,9 +45,12 @@
           this.$store.dispatch('ToggleSideBar')
         },
         logout() {
+            //  debugger;
           this.$store.dispatch('LogOut').then(() => {
-            location.reload();// 为了重新实例化vue-router对象 避免bug
-          });
+            //   debugger;
+            //   console.log(this,1)
+            // window.location.reload();// 为了重新实例化vue-router对象 避免bug
+        });
         }
       }
     }
