@@ -91,6 +91,7 @@
                   window.localStorage.setItem('lan','en');
              }
 
+                window.location.reload();
                 this.$i18n.locale = window.localStorage.getItem('lan');
                 // if ( window.localStorage.getItem('lan') === 'zh') {
                 //     this.zh = '中文';
@@ -120,7 +121,7 @@
                        this.loading = false;
                        this.$router.push({ path: '/' });
                     //    window.location.reload();
-                    
+
                    }
 
                 // this.showDialog = true;

@@ -119,8 +119,18 @@ router.afterEach(() => {
 // })(console.error);
 
 new Vue({
-  i18n,  
+  i18n,
   router,
   store,
   render: h => h(App)
 }).$mount('#app');
+
+// if (module.hot) {
+//     module.hot.accept(['@/i18n/zh.json', '@/i18n/en.json'], function () {
+//     i18n.setLocaleMessage('zh', require('@/i18n/zh.json').default)
+//     i18n.setLocaleMessage('en', require('@/i18n/en.json').default)
+//     // Or the following hot updates via $i18n property
+//     // app.$i18n.setLocaleMessage('en', require('./en').default)
+//     // app.$i18n.setLocaleMessage('ja', require('./ja').default)
+//   })
+// }

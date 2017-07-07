@@ -1,30 +1,31 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import VueI18n from 'vue-i18n'
-
-Vue.use(VueI18n)
-
-/**
-    对于js文件中的汉字，可采用如下方法，暂时只支持json中的两层嵌套
-*/
-const i18n = new VueI18n({
-  locale: window.localStorage.getItem('lan') || 'zh',
-  messages: {
-    'en': require('@/i18n/en.json'),
-    'zh': require('@/i18n/zh.json')
-  }
-})
-
-const lan = window.localStorage.getItem('lan') || 'zh';
-
-const $t =  arg  => {
-    if(!arg.indexOf('.')){
-        return i18n.messages[lan][arg]
-    }else{
-        return i18n.messages[lan][arg.split('.')[0]][arg.split('.')[1]]
-    }
-
-}
+import i18n from '../i18n'
+// import VueI18n from 'vue-i18n'
+//
+// Vue.use(VueI18n)
+//
+// /**
+//     对于js文件中的汉字，可采用如下方法，暂时只支持json中的两层嵌套
+// */
+// const i18n = new VueI18n({
+//   locale: window.localStorage.getItem('lan') || 'zh',
+//   messages: {
+//     'en': require('@/i18n/en.json'),
+//     'zh': require('@/i18n/zh.json')
+//   }
+// })
+//
+// const lan = window.localStorage.getItem('lan') || 'zh';
+//
+// const i18n.t =  arg  => {
+//     if(!arg.indexOf('.')){
+//         return i18n.messages[lan][arg]
+//     }else{
+//         return i18n.messages[lan][arg.split('.')[0]][arg.split('.')[1]]
+//     }
+//
+// }
 
 // const Info = r => require.ensure([], () => r(require('@components/info')), 'info')
 // const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
@@ -135,7 +136,7 @@ export const constantRouterMap = [
     beforeEnter: (to, from, next) => {
         next();
     },
-    name: $t('route.home'), //首页
+    name: i18n.t('route.home'), //首页
     hidden: true,
     children: [{ path: 'dashboard', component: dashboard }]
   },
@@ -192,14 +193,14 @@ export const asyncRouterMap = [
     path: '/charts',
     component: Layout,
     redirect: '/charts/index',
-    name: $t('route.chart'), //图表
+    name: i18n.t('route.chart'), //图表
     icon: 'tubiaoleixingzhengchang',
     children: [
       //{ path: 'index', component: chartIndex, name: '介绍' },
     //   { path: 'keyboard', component: KeyboardChart, name: '键盘图表' },
     //   { path: 'keyboard2', component: KeyboardChart2, name: '键盘图表' },
     //   { path: 'line', component: LineMarker, name: '折线图' },
-      { path: 'mixchart', component: MixChart, name: $t('route.mchart') } //混合图表
+      { path: 'mixchart', component: MixChart, name: i18n.t('route.mchart') } //混合图表
     ]
   },
   // {
@@ -235,19 +236,19 @@ export const asyncRouterMap = [
     path: '/example',
     component: Layout,
     redirect: 'noredirect',
-    name: $t('route.comprehensive'), //综合实例 Comprehensive
+    name: i18n.t('route.comprehensive'), //综合实例 Comprehensive
     icon: 'zonghe',
     children: [
       {
         path: '/table',
         component: TableLayout,
         redirect: '/table/table',
-        name: $t('route.table'), //表格 table
+        name: i18n.t('route.table'), //表格 table
         children: [
           //{ path: 'dynamictable', component: DynamicTable, name: '动态table' },
           //{ path: 'dragtable', component: DragTable, name: '拖拽table' },
         //   { path: 'inline_edit_table', component: InlineEditTable, name: 'table内编辑' },
-          { path: 'table', component: Table, name: $t('route.mtable') } //综合table mtable
+          { path: 'table', component: Table, name: i18n.t('route.mtable') } //综合table mtable
         ]
       },
     //   { path: 'form1', component: Form1, name: '综合form1' }
@@ -260,7 +261,7 @@ export const asyncRouterMap = [
     name: '综合form',
     icon: 'theme',
     noDropdown: true,
-    children: [{ path: 'index', component: Form1, name: $t('route.form'), meta: { role: ['admin'] } }]
+    children: [{ path: 'index', component: Form1, name: i18n.t('route.form'), meta: { role: ['admin'] } }]
   },
   { path: '*', redirect: '/404', hidden: true }
 ];
