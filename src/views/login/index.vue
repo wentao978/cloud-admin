@@ -51,7 +51,7 @@
         };
         const validatePass = (rule, value, callback) => {
           if (value.length < 6) {
-            callback(new Error( _this.$t('login.minPassword') ));
+            callback(new Error( _this.$t('login.minPassword', {num:6}) ));
           } else {
             callback();
           }

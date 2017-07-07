@@ -9,7 +9,7 @@
         "adminTips": "admin account: admin@gionee.com password fill",
         "editorTips": "editor account: editor@gionee.com password fill",
         "correctEmail": "Please enter the correct legal mailbox",
-        "minPassword": "The password cannot be less than 6 digits"
+        "minPassword": "The password cannot be less than {num} digits"
     },
     "head": {
         "title": "Cloud platform"

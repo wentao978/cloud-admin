@@ -9,7 +9,7 @@
         "adminTips": "admin账号为:admin@gionee.com 密码随便填",
         "editorTips": "editor账号:editor@gionee.com 密码随便填",
         "correctEmail": "请输入正确的合法邮箱",
-        "minPassword": "密码不能小于6位"
+        "minPassword": "密码不能小于{num}位"
     },
     "head": {
         "title": "云服务管理平台"
