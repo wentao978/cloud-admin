@@ -92,6 +92,6 @@
         -webkit-filter: hue-rotate(-360deg);
       }
     }
-    .jl-title{ font:bold 24px/60px 'Microsoft Yahei'; color:#18A689; -webkit-animation: hue 60s infinite linear;-webkit-background-clip:text; background-image:-webkit-linear-gradient(top,#18A689,#11ED31);-webkit-text-fill-color: transparent; padding-left: 20px;}
+    .jl-title{display: flex;transition :transform 1s; font:bold 24px/60px 'Microsoft Yahei'; color:#18A689; -webkit-animation: hue 60s infinite linear;-webkit-background-clip:text; background-image:-webkit-linear-gradient(top,#18A689,#11ED31);-webkit-text-fill-color: transparent; padding-left: 20px;}
 
 </style>

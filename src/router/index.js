@@ -259,7 +259,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     name: '综合form',
-    icon: 'theme',
+    icon: 'wujiaoxing',
     noDropdown: true,
     children: [{ path: 'index', component: Form1, name: i18n.t('route.form'), meta: { role: ['admin'] } }]
   },
