@@ -1,41 +1,43 @@
 import Vue from 'vue'
 import {
-		Button,
-		Breadcrumb,
-		BreadcrumbItem,
-		Checkbox,
-		Col,
-		DatePicker,
-		Dialog,
-		Dropdown,
-		DropdownItem,
-		DropdownMenu,
-		Form,
-		FormItem,
-		Input,
-		Loading,
-		Message,
-		MessageBox,
-		Menu,
-		MenuItem,
-		Notification,
-		Option,
-		Pagination,
-		Rate,
-		Row,
-		Submenu,
-		Select,
-		Table,
-		TableColumn,
-		Tag,
-		Tooltip
+	Button,
+	Breadcrumb,
+	BreadcrumbItem,
+	Checkbox,
+	Col,
+	DatePicker,
+	Dialog,
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	Form,
+	FormItem,
+	Input,
+	Loading,
+	Message,
+	MessageBox,
+	Menu,
+	MenuItem,
+	Notification,
+	Option,
+	Pagination,
+	Rate,
+	Row,
+	Submenu,
+	Select,
+	Table,
+	TableColumn,
+	Tag,
+	Tooltip
 } from 'element-ui'
 
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 
 // 设置语言
-window.localStorage.getItem('lan') === 'en' ? locale.use(lang) : '';
+window.localStorage.getItem('lan') === 'en'
+	? locale.use(lang)
+	: '';
 
 Vue.use(Button)
 Vue.use(Breadcrumb)

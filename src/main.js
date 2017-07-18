@@ -9,13 +9,15 @@ import store from './store';
 import './components/element-ui'
 // import 'assets/custom-theme/index.css'; // 换肤版本element-ui css https://github.com/PanJiaChen/custom-element-theme
 import NProgress from 'nprogress'; // Progress 进度条
-import 'nprogress/nprogress.css';// Progress 进度条 样式
-import 'normalize.css/normalize.css';// normalize.css 样式格式化
+import 'nprogress/nprogress.css'; // Progress 进度条 样式
+import 'normalize.css/normalize.css'; // normalize.css 样式格式化
 import 'styles/index.scss'; // 全局自定义的css样式
 import 'components/Icon-svg/index'; // 封装的svg组件
 import 'assets/iconfont/iconfont'; // iconfont 具体图标见https://github.com/PanJiaChen/vue-element-admin/wiki
 import * as filters from './filters'; // 全局vue filter
 import i18n from './i18n'
+import axios from 'utils/fetch';
+Vue.prototype.$http = axios;
 //import Multiselect from 'vue-multiselect';// 使用的一个多选框组件，element-ui的select不能满足所有需求
 //import 'vue-multiselect/dist/vue-multiselect.min.css';// 多选框组件css
 // import Sticky from 'components/Sticky'; // 粘性header组件
@@ -30,63 +32,67 @@ import i18n from './i18n'
 // Vue.use(vueWaves);
 // register global utility filters.
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
+	Vue.filter(key, filters[key])
 });
 
 // permissiom judge
 function hasPermission(roles, permissionRoles) {
-  if (roles.indexOf('admin') >= 0){
-      return true
-  } // admin权限 直接通过
-  if (!permissionRoles){
-      return true
-  }
-  return roles.some(role => permissionRoles.indexOf(role) >= 0)
+	if (roles.indexOf('admin') >= 0) {
+		return true
+	} // admin权限 直接通过
+	if (!permissionRoles) {
+		return true
+	}
+	return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
 // register global progress.
-const whiteList = ['/login', '/authredirect', '/reset', '/sendpwd'];//
+const whiteList = ['/login', '/authredirect', '/reset', '/sendpwd']; //
 router.beforeEach((to, from, next) => {
-  NProgress.start(); // 开启Progress
-  if (store.getters.token) { // 判断是否有token
-    if (to.path === '/login') {
-      next({ path: '/' });
-    } else {
-      if (store.getters.roles.length === 0) { //
-        //   return true;
-        store.dispatch('GetInfo').then(res => { // 拉取user_info
-          const roles = res.data.role;
-        //   debugger;
-          store.dispatch('GenerateRoutes', { roles }).then(() => { // 生成可访问的路由表
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            next(to.path); // hack方法 确保addRoutes已完成
-          })
-        }).catch(err => {
-            throw new Error(err)
-        });
-      } else {
-        // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
-        if (hasPermission(store.getters.roles, to.meta.role)) {
-          next();//
-        } else {
-          next({ path: '/401', query: { noGoBack: true } });
-        }
-        // 可删 ↑
-      }
-    }
-  } else {
-    if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
-      next()
-    } else {
-      next('/login'); // 否则全部重定向到登录页
-      NProgress.done(); // 在hash模式下 改变手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
-    }
-  }
+	NProgress.start(); // 开启Progress
+	if (store.getters.token) { // 判断是否有token
+		if (to.path === '/login') {
+			next({path: '/'});
+		} else {
+			if (store.getters.roles.length === 0) { //
+				//   return true;
+				store.dispatch('GetInfo').then(res => { // 拉取user_info
+					const roles = res.data.role;
+					//   debugger;
+					store.dispatch('GenerateRoutes', {roles}).then(() => { // 生成可访问的路由表
+						router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+						next(to.path); // hack方法 确保addRoutes已完成
+					})
+				}).catch(err => {
+					throw new Error(err)
+				});
+			} else {
+				// 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
+				if (hasPermission(store.getters.roles, to.meta.role)) {
+					next(); //
+				} else {
+					next({
+						path: '/401',
+						query: {
+							noGoBack: true
+						}
+					});
+				}
+				// 可删 ↑
+			}
+		}
+	} else {
+		if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+			next()
+		} else {
+			next('/login'); // 否则全部重定向到登录页
+			NProgress.done(); // 在hash模式下 改变手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
+		}
+	}
 });
 
-
 router.afterEach(() => {
-  NProgress.done(); // 结束Progress
+	NProgress.done(); // 结束Progress
 });
 
 // window.onunhandledrejection = e => {
@@ -119,10 +125,10 @@ router.afterEach(() => {
 // })(console.error);
 
 new Vue({
-  i18n,
-  router,
-  store,
-  render: h => h(App)
+	i18n,
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app');
 
 // if (module.hot) {
